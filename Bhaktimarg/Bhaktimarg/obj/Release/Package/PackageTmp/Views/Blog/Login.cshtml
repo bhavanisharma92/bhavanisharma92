@@ -1,0 +1,49 @@
+﻿@model Bhaktimarg.Models.Login
+@{
+    ViewBag.Title = "Login";
+}
+@using (Html.BeginForm("LoginPage", "Home", FormMethod.Post))
+{
+
+
+    <section class="login-signin" style="background: none !important;">
+        <div class="bg" style="background:#e3bf93;">
+            <div class="content">
+
+                <div class="from-content">
+                    <div class="header-icon">
+                        <a href="/" class="text-center">
+                            <img src="~/Content/images/logo/logo.png" alt="logo" width="25%">
+                        </a>
+                    </div>
+                    <h1>Sign in to INDIAN SERVER</h1>
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    @if (@ViewBag.Message != null)
+                    {
+                        <div style="border: 1px solid red">
+                            @ViewBag.Message
+                        </div>
+                    }
+                    <div class="row">
+                        <div class="form-group col-12">
+                            @Html.LabelFor(a => a.UserName)
+                            @Html.TextBoxFor(a => a.UserName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(a => a.UserName)
+                        </div>
+                        <div class="form-group col-12">
+                            @Html.LabelFor(a => a.Password)
+                            @Html.PasswordFor(a => a.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(a => a.Password)
+                        </div>
+                        <div class="col-12">
+                            <input type="submit" value="Login" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+}
+

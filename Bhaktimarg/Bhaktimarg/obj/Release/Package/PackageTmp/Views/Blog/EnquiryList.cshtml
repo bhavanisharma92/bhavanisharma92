@@ -1,0 +1,433 @@
+﻿@model List<Bhaktimarg.Models.Contact>
+
+@{
+    Layout = null;
+}
+
+
+
+<head>
+    <style>
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            #customers td, #customers th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #customers tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            #customers tr:hover {
+                background-color: #ddd;
+            }
+
+            #customers th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;
+            }
+   
+
+        .table tr:hover {
+            background-color: #f5e6e66e !important;
+        }
+
+        .addque {
+            margin-left: 643px;
+        }
+
+        .subject-List {
+            width: 100%;
+            padding: 55px 0px 0px 0px;
+        }
+
+            .subject-List h2 {
+                color: #a25f1f !important;
+            }
+
+        .subject-list-card {
+            padding: 15px;
+            box-shadow: 0px 0px 28px 0px #eee;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #a25f1f;
+        }
+
+        td, th {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: #a25f1f !important;
+            color: #fff;
+        }
+
+        a.btn.btn-new {
+            background: #1f81a1;
+            color: #fff;
+            transition: all ease-in-out 0.3s;
+            margin: auto;
+        }
+
+            a.btn.btn-new:hover {
+                background: #808080;
+                color: #fff;
+            }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            line-height: 18px;
+            background: #f4f4f4;
+        }
+
+        .list-wrapper {
+            padding: 15px;
+            overflow: hidden;
+        }
+
+        .list-item {
+            border: 1px solid #EEE;
+            background: #FFF;
+            margin-bottom: 10px;
+            padding: 10px;
+            box-shadow: 0px 0px 10px 0px #EEE;
+        }
+
+            .list-item h4 {
+                color: #FF7182;
+                font-size: 18px;
+                margin: 0 0 5px;
+            }
+
+            .list-item p {
+                margin: 0;
+            }
+
+        .simple-pagination ul {
+            margin: 11px 0 0px;
+            padding: 0;
+            list-style: none;
+            text-align: center;
+        }
+
+        .simple-pagination li {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+            .simple-pagination li a,
+            .simple-pagination li span {
+                color: #666;
+                padding: 5px 10px;
+                text-decoration: none;
+                border: 1px solid #EEE;
+                background-color: #FFF;
+                box-shadow: 0px 0px 10px 0px #EEE;
+            }
+
+        .simple-pagination .current {
+            color: #FFF;
+            background-color: #FF7182;
+            border-color: #FF7182;
+        }
+
+        .simple-pagination .prev.current,
+        .simple-pagination .next.current {
+            background: #e04e60;
+        }
+
+        .delete {
+            cursor: pointer;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        #myInput {
+            margin-left: 100px;
+        }
+   
+        a.btn {
+            color: #fff;
+            background: #FF0066;
+            padding: .5rem 1rem;
+            display: inline-block;
+            border-radius: 4px;
+            transition-duration: .25s;
+            border: none;
+            font-size: 14px;
+        }
+
+            a.btn:hover {
+                background: #22272a;
+            }
+
+
+        #panel1 {
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        .fortextbox {
+            width: 227px;
+            height: 25px;
+            border-radius: 5px;
+        }
+
+        #myinput {
+            float: right;
+            display: flex;
+        }
+
+        span {
+            float: right;
+            display: flex;
+        }
+
+        .main_heading {
+            margin-top: 30px;
+            font-family: initial;
+            font-weight: bolder;
+            font-size: 4em;
+            color: #17a2b8;
+            text-align: center;
+        }
+
+        .header-secc {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+
+       
+
+        .menu {
+            margin-bottom: 10px;
+        }
+
+       
+        .main_heading {
+            font-family: serif;
+            font-weight: bolder;
+            font-size: 3em;
+            color: #17a2b8;
+        }
+
+        .header-secc {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+
+        
+    </style>
+
+
+</head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+
+<body>
+    @*<h1 class="text-center main_heading">Enquiry-List</h1>*@
+    <div class="header-secc">
+        <div class="Heaser-btn-my">
+            <a href="/CareerA" class="btn btn-info ">MainMenu List</a>
+        </div>
+        <div class="h1-title">
+            <h1 class="text-center main_heading">Enquiry-List</h1>
+        </div>
+    </div>
+
+    <table id="customers">
+        <tr>
+            <th>
+               Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+               MobileNumber
+            </th>
+            <th>
+                HostingType
+            </th>
+            <th>
+                Message
+            </th>
+            <th>
+               DateTime
+            </th>
+            
+        </tr>
+        <tbody id="myTable" class="list-wrapper">
+            @foreach (var item in Model.Distinct())
+            {
+                <tr class="list-item">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MobileNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HostingType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Message)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedDateTime)
+                    </td>
+                    @*<td>
+                        <button onclick="btn(@item.id)" data-id="@item.id" data-target="#myModal" class="btn btn-info">@(item.Status==null?"Pending":item.Status)</button>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Updateddate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Remark)
+                    </td>*@
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+    <!-- Modal -->
+
+    <input type="hidden" value="" id="Iddd" />
+
+    <div id="pagination-container"></div>
+</body>
+<script src="~/Scripts/jquery-3.6.0.js"></script>
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#flip").click(function () {
+            /*  $("#panel").slideToggle("slow");*/
+        });
+
+        $("#flip1").click(function () {
+            /*  $("#panel1").slideToggle("slow");*/
+        });
+
+        //Filter table
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+
+
+       /* for close popup*/
+
+
+        $(".close").click(function () {
+            $("#myModal").modal('hide').css('display', 'none');
+
+        })
+
+
+    });
+</script>
+<script>
+    var items = $(".list-wrapper .list-item");
+    var numItems = items.length;
+    var perPage = 14;
+
+    items.slice(perPage).hide();
+
+    $('#pagination-container').pagination({
+        items: numItems,
+        itemsOnPage: perPage,
+        prevText: "&laquo;",
+        nextText: "&raquo;",
+        onPageClick: function (pageNumber) {
+            var showFrom = perPage * (pageNumber - 1);
+            var showTo = showFrom + perPage;
+            items.hide().slice(showFrom, showTo).show();
+        }
+    });
+
+</script>
+<script>
+    function btn(id) {
+        debugger;
+        var idd = id;
+        $("#myModal").modal('show').css('display', 'block');
+        $("#Iddd").val(idd);
+    }
+    function submit() {
+        debugger
+        var d = {
+            sel: $("#exampleFormControlSelect1").val(),
+            iddd: $("#Iddd").val(),
+            remark: $("#remark").val(),
+        }
+        $.ajax({
+            url: "/SaveStatuscomplaint/Home",
+            method: "Post",
+            data: d,
+            success: function (response) {
+                alert('Data has been Updated');
+                location.reload();
+            },
+            error: function (err) {
+               // alertify.error('Something went wrong!');
+            }
+        });
+    }
+
+</script>
+
+
+
+

@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BhaktimargModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Blog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Url" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ImageUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Descriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="AddedDate" Type="DateTime" Precision="7" />
+    <Property Name="MetaTag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ShortDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ActiveUpdatedBy" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HostingType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="RoleId" Type="Byte" />
+    <NavigationProperty Name="Role" Relationship="Self.fk__Login_Role_Id" FromRole="Login" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="MapMenuToRole">
+    <Key>
+      <PropertyRef Name="RoleId" />
+      <PropertyRef Name="MenuId" />
+    </Key>
+    <Property Name="RoleId" Type="Byte" Nullable="false" />
+    <Property Name="MenuId" Type="Int32" Nullable="false" />
+    <Property Name="AllowCreate" Type="Boolean" Nullable="false" />
+    <Property Name="AllowUpdate" Type="Boolean" Nullable="false" />
+    <Property Name="AllowDelete" Type="Boolean" Nullable="false" />
+    <Property Name="AddedDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="7" />
+    <Property Name="AddedById" Type="Int32" />
+    <Property Name="UpdatedById" Type="Int32" />
+    <NavigationProperty Name="Menu" Relationship="Self.FK__MapMenuTo__MenuI__22AA2996" FromRole="MapMenuToRole" ToRole="Menu" />
+    <NavigationProperty Name="Role" Relationship="Self.FK__MapMenuTo__RoleI__1CF15040" FromRole="MapMenuToRole" ToRole="Role" />
+    <NavigationProperty Name="Role1" Relationship="Self.FK__MapMenuTo__RoleI__239E4DCF" FromRole="MapMenuToRole" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ParentId" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="MenuId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IconClass" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Priority" Type="Int32" />
+    <Property Name="ChildMenus" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="AddedDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="7" />
+    <Property Name="AddedById" Type="Int32" />
+    <Property Name="UpdatedById" Type="Int32" />
+    <NavigationProperty Name="MapMenuToRoles" Relationship="Self.FK__MapMenuTo__MenuI__22AA2996" FromRole="Menu" ToRole="MapMenuToRole" />
+    <NavigationProperty Name="Menu1" Relationship="Self.FK_Menu_Menu_ParentId" FromRole="Menu" ToRole="Menu1" />
+    <NavigationProperty Name="Menu2" Relationship="Self.FK_Menu_Menu_ParentId" FromRole="Menu1" ToRole="Menu" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Logins" Relationship="Self.fk__Login_Role_Id" FromRole="Role" ToRole="Login" />
+    <NavigationProperty Name="MapMenuToRoles" Relationship="Self.FK__MapMenuTo__RoleI__1CF15040" FromRole="Role" ToRole="MapMenuToRole" />
+    <NavigationProperty Name="MapMenuToRoles1" Relationship="Self.FK__MapMenuTo__RoleI__239E4DCF" FromRole="Role" ToRole="MapMenuToRole" />
+  </EntityType>
+  <Association Name="fk__Login_Role_Id">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Login" Type="Self.Login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Login">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MapMenuTo__MenuI__22AA2996">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+    <End Role="MapMenuToRole" Type="Self.MapMenuToRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MapMenuToRole">
+        <PropertyRef Name="MenuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MapMenuTo__RoleI__1CF15040">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="MapMenuToRole" Type="Self.MapMenuToRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MapMenuToRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MapMenuTo__RoleI__239E4DCF">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="MapMenuToRole" Type="Self.MapMenuToRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MapMenuToRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Menu_Menu_ParentId">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+    <End Role="Menu1" Type="Self.Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Menu1">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BhaktimargEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Blogs" EntityType="Self.Blog" />
+    <EntitySet Name="Contacts" EntityType="Self.Contact" />
+    <EntitySet Name="Logins" EntityType="Self.Login" />
+    <EntitySet Name="MapMenuToRoles" EntityType="Self.MapMenuToRole" />
+    <EntitySet Name="Menus" EntityType="Self.Menu" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <AssociationSet Name="fk__Login_Role_Id" Association="Self.fk__Login_Role_Id">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="Login" EntitySet="Logins" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MapMenuTo__MenuI__22AA2996" Association="Self.FK__MapMenuTo__MenuI__22AA2996">
+      <End Role="Menu" EntitySet="Menus" />
+      <End Role="MapMenuToRole" EntitySet="MapMenuToRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MapMenuTo__RoleI__1CF15040" Association="Self.FK__MapMenuTo__RoleI__1CF15040">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="MapMenuToRole" EntitySet="MapMenuToRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MapMenuTo__RoleI__239E4DCF" Association="Self.FK__MapMenuTo__RoleI__239E4DCF">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="MapMenuToRole" EntitySet="MapMenuToRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Menu_Menu_ParentId" Association="Self.FK_Menu_Menu_ParentId">
+      <End Role="Menu" EntitySet="Menus" />
+      <End Role="Menu1" EntitySet="Menus" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
