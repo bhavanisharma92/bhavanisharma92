@@ -1,0 +1,98 @@
+﻿﻿@model Bhaktimarg.Models.Login
+@{
+    ViewBag.Title = "Login";
+}
+@using (Html.BeginForm("LoginPage", "Home", FormMethod.Post))
+{
+
+    <section class="login-signin">
+        <div class="bg loginds">
+            <div class="content">
+                <div class="from-content ">
+                    <h1>Sign in to Bhaktiarg</h1>
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    @if (@ViewBag.Message != null)
+                    {
+                        <div style="border: 1px solid red">
+                            @ViewBag.Message
+                        </div>
+                    }
+                    <div class="row">
+                        <div class="form-group col-12">
+                            @Html.LabelFor(a => a.UserName)
+                            @Html.TextBoxFor(a => a.UserName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(a => a.UserName)
+                        </div>
+                        <div class="form-group col-12">
+                            @Html.LabelFor(a => a.Password)
+                            @Html.PasswordFor(a => a.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(a => a.Password)
+                        </div>
+                        <div class="col-12">
+                            <input type="submit" value="Login" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+}
+
+<style>
+    section.login-signin {
+        background-image: url(http://surl.li/qorfi);
+        background-size: cover;
+    }
+
+    .from-content {
+        width: 450px;
+        padding: 20px;
+        margin: auto;
+        color: white;
+        font-size: 20px;
+    }
+
+    .bg.loginds {
+        padding-top: 100px;
+        background: #37294b29;
+    }
+
+    .content {
+        padding: 70px 0;
+    }
+
+    form {
+        margin: 0;
+    }
+
+    h1 {
+        text-align: center;
+        padding: 20px 0;
+        font-family: math;
+    }
+
+    li a {
+        color: azure !important;
+    }
+
+    .navigation {
+        background: none;
+    }
+
+    input {
+        border: 3px solid white;
+        background: transparent;
+        color: white;
+        padding: 2px 28px;
+    }
+
+        input:hover {
+            background: black;
+        }
+
+        input[type="submit"] {
+            margin-top: 15px;
+        }
+</style>

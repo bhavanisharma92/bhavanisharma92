@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/Content/Pic/favicon.jpg">
+
+    <!-- Google Tag Manager -->
+    <script>
+    (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WPTDTM7M');</script>
+    <!-- End Google Tag Manager -->
+
+    @RenderSection("MetaTags", required: false)
+
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/Style.css" rel="stylesheet" />
+    <link href="~/Content/css/pages-css.css" rel="stylesheet" />
+    <style>
+        @@import url('https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Laila:wght@300;400;500&display=swap');
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WPTDTM7M"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <section class="nnavbar" id="addclass">
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <div class="container-fluid">
+                <a class="navbar-brand navlogo" href="/"> <img src="~/Content/Pic/bhaktimarg.png" alt="" /> </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/blog">Blogs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/contact-us">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+    <div>
+        @RenderBody()
+    </div>
+
+    <footer>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="logo">
+                        <img src="~/Content/Pic/bhaktimarg.png" alt="" />
+                        <p>भक्तिमार्ग वेबसाइट का मुख्य उद्देश्य सनातन धर्म और भक्ति से जुड़े विषयों को समझाना और प्रसारित करना है। यहाँ आध्यात्मिक विकास, ध्यान, साधना, और समुदाय के साथ जुड़ने के लिए एक मंच प्रदान किया जाता है।</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="footer-text">
+
+                        <ul>
+                            <li><a class="has" href="/">Home</a></li>
+                            <li><a class="has" href="/blog">Blog</a></li>
+                            <li><a class="has" href="/contact-us">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <div class="col-12 strip">
+        <p>Powered by <a class="has" href="/">Bhaktimarg</a></p>
+    </div>
+
+    <script src="~/Content/Js/bootstrap.min.js"></script>
+    <script src="~/Content/Js/jQuery-v3.7min.js"></script>
+
+    <script>
+        const yourDiv = document.getElementById('addclass');
+        function addClassOnScroll() {
+            if (window.scrollY >= 100) {
+                yourDiv.classList.add('nav-background');
+            } else {
+                yourDiv.classList.remove('nav-background');
+            }
+        }
+        window.addEventListener('scroll', addClassOnScroll);
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+﻿@model Bhaktimarg.Models.productdetailsdto
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section MetaTags
+{
+    <link rel="stylesheet" href="/Content/css/blog.css" />
+
+    }
+    <section class="blog show-more">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-8">
+                    <div class="blog-card p-3">
+                        <div class="tab-content 1" id="v-pills-tabContent">
+                            <div class="tab-pane fade show active" id="v-post-1" role="tabpanel" aria-labelledby="v-post-1-tab">
+
+                                <div class="row m-0 d-flex align-items-start">
+                                    <div class="col-12 col-md-12">
+                                        @*<div class="date">
+                                            <p>@Model.Dates</p>
+                                        </div>*@
+                                        <h1 class="mb-3">@Model.Title</h1>
+                                    </div>
+                                    <div class="col-md-12 col-12">
+                                        <div class="blog-img">
+                                            <img src="@Model.Image" class="w-100" alt="img">
+
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+                                <div>
+                                    @Html.Raw(Model.Description)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-12 col-md-4">
+                    <div class="blog-card-right">
+                        <div class="blog-card-header"><h4 class="mb-0">RECENT POSTS</h4></div>
+                        <div class="blog-card-body">
+                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                @{
+                                    foreach (var d in ViewBag.Data)
+                                    {
+                                        if (Model.Title == d.Title)
+                                        {
+                                            <a class="nav-link active" href="@d.Url" role="tab" aria-controls="v-post-1" aria-selected="true"> @d.Title</a>
+                                        }
+                                        else
+                                        {
+                                            <a class="nav-link" href="@d.Url" role="tab" aria-controls="v-post-1" aria-selected="true"> @d.Title</a>
+
+                                        }
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
